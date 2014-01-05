@@ -12,3 +12,6 @@ and click sendto -> Subtitle.cmd
 Voila. the .srt subtitle file will be created right next to your movie file.
 
 Enjoy the show!
+
+More details can be found here : qr.ae/GxOcx
+A how to video can be found here: http://www.youtube.com/watch?v=Q5YWEqgw9X8
