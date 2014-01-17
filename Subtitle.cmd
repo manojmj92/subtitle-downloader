@@ -1,3 +1,9 @@
 @echo off
 cls
-python C:\subtitle-downloader.py %1
+set PATH=%PATH%;C:\python27\
+:my_loop
+IF %1=="" GOTO completed
+  python C:\subtitle-downloader.py %1
+  SHIFT
+  GOTO my_loop
+:completed
