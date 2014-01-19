@@ -10,7 +10,7 @@
 #-------------------------------------------------------------------------------
 import os
 import hashlib
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import sys
 def get_hash(name):
         readsize = 64 * 1024
@@ -32,8 +32,8 @@ def sub_downloader(path):
         headers = { 'User-Agent' : 'SubDB/1.0 (subtitle-downloader/1.0; http://github.com/manojmj92/subtitle-downloader)' }
         url = "http://api.thesubdb.com/?action=download&hash="+hash+"&language=en"
 
-        req = urllib2.Request(url, '', headers)
-        response = urllib2.urlopen(req).read()
+        req = urllib.request.Request(url, None, headers)
+        response = urllib.request.urlopen(req).read()
 
         with open (path+".srt","wb") as subtitle:
             subtitle.write(response)
