@@ -1,12 +1,11 @@
 Python script to download english subtitles of any movie/tv series episode.
 
-NOTE: Works only with 3.x
 
 Get the latest version of Python at http://www.python.org/getit/. Make sure you download a 3.x release.
 
 Usage:
 
-Install python 3.x
+Install Python
 
 Place subtitle-downloader.py file in C:\
 
