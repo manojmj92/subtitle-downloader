@@ -7,6 +7,9 @@ Usage:
 
 Install Python
 
+Follow the steps at http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7
+to set the python path.
+
 Place subtitle-downloader.py file in C:\
 
 Place the Subtitle.cmd in sendto folder in windows (can be accessed by typing shell:sendto in address bar)
