@@ -1,3 +1,6 @@
+Subtitle Downloader
+===================
+
 Python script to download english subtitles of any movie/tv series episode.
 
 
