@@ -35,6 +35,15 @@ and click sendto -> Subtitle.cmd
 
 * Now, Right click the movie file (not the movie folder). You can also select multiple files. Click Services -> Download Subtitle
 
+#####Linux (Tested on Debian Based):
+*Install python
+
+*Go to ~/.gnome2/nautilus-scripts folder and add Subtitles_in_english.sh in the folder.
+
+*The path for Subtitle_downloader.py is hardcoded to Desktop ...U can change it accordingly.
+
+*Now Right Click on the movie file (not the movie folder). You can also select multiple files. Click Services -> Subtitles_in_engliish.
+
 Voila. the .srt subtitle file will be created right next to your movie file.
 
 Enjoy the show!
