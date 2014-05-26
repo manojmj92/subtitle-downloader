@@ -29,7 +29,7 @@ def get_hash(name):
 def sub_downloader(path):
 
     hash = get_hash(path)
-    replace = [".avi",".mp4",".mkv",".mpg",".mpeg"]
+    replace = [".avi",".mp4",".mkv",".mpg",".mpeg",".mov",".rm",".vob",".wmv",".flv",".3gp"]
     for content in replace:
         path = path.replace(content,"")
     if not os.path.exists(path+".srt"):
