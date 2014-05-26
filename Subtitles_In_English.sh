@@ -3,7 +3,7 @@ IFS="
 "
 
 for line in $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS; do
-        full_path="/home/"$USER"/Desktop/"rs_subtitle_downloader.py
+        full_path="/home/"$USER"/Desktop/"subtitle-downloader.py
         python $full_path $line 
         notify-send $line
 done
