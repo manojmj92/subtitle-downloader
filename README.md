@@ -18,6 +18,8 @@ Get the latest version of Python at http://www.python.org/getit/.
 * Right click the movie file (not the movie folder). You can also select multiple files.
 and click sendto -> Subtitle.cmd
 
+* If you want to download subtitles for all movies in a folder, you can use the subtitle-downloader-folder.py file, instead of the subtitle-downloader.py file.
+
 #### Mac:
 * Install python and make sure it is in your path
 
