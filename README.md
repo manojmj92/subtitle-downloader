@@ -38,14 +38,14 @@ and click sendto -> Subtitle.cmd
 * Now, Right click the movie file (not the movie folder). You can also select multiple files. Click Services -> Download Subtitle
 
 
-#####Linux (Tested on Debian Based):
-*Install python
+#####Linux with Nautilus file manager(Tested on Debian Based with nautilus as file manager):
+* Install python
 
-*Go to ~/.gnome2/nautilus-scripts folder and add Subtitles_in_english.sh in the folder.
+* Go to ~/.gnome2/nautilus-scripts folder and add Subtitles_in_english.sh in the folder.
 
-*The path for Subtitle_downloader.py is hardcoded to Desktop ...U can change it accordingly.
+* The path for Subtitle_downloader.py is hardcoded to Desktop ...U can change it accordingly.
 
-*Now Right Click on the movie file (not the movie folder). You can also select multiple files. Click Services -> Subtitles_in_english.
+* Now Right Click on the movie file (not the movie folder). You can also select multiple files. Click Services -> Subtitles_in_english.
 
 
 ![ScreenShot](https://cloud.githubusercontent.com/assets/1637697/3078931/1a693b9a-e487-11e3-8d51-64dce970ad9d.gif)
@@ -56,3 +56,20 @@ Enjoy the show!
 
 More details can be found here : qr.ae/GxOcx
 A how to video can be found here: http://www.youtube.com/watch?v=Q5YWEqgw9X8
+
+#####Linux with NEMO file manager(Tested on Debian Based with NEMO as file manager):
+* Install python
+
+* Go to ~/.gnome2/nemo-scripts folder and add Subtitles_In_English_for_nemo.sh in the folder.
+
+* The path for Subtitle_downloader.py is hardcoded to Desktop ...You can change it accordingly.
+
+* Open terminal and execute following command : 
+```
+chmod +x ~/.gnome2/nemo-scripts/Subtitles_In_English_for_nemo.sh
+```
+
+* Now Right Click on the movie file (not the movie folder). You can also select multiple files. Click Services -> Subtitles_In_English_for_nemo.
+
+Voila. the .srt subtitle file will be created right next to your movie file.
+
