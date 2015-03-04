@@ -1,8 +1,8 @@
 #-------------------------------------------------------------------------------
 # Name      : subtitle downloader
-# Purpose   :
+# Purpose   : One step subtitle download
 #
-# Authors   : manoj m j, arun shivaram p, Valentin Vetter
+# Authors   : manoj m j, arun shivaram p, Valentin Vetter, niroyb
 # Edited by : Valentin Vetter
 # Created   :
 # Copyright : (c) www.manojmj.com
@@ -11,67 +11,67 @@
 
 # TODO: use another DB if subs are not found on subDB
 
-import os
 import hashlib
+import os
 import sys
 
-try:
-    import urllib.request, urllib.parse
-    pyVer = 3
-except ImportError:
+PY_VERSION = sys.version_info[0]
+if PY_VERSION == 2:
     import urllib2
-    pyVer = 2
+if PY_VERSION == 3:
+    import urllib
 
-def get_hash(name):
-    readsize = 64 * 1024
-    with open(name, 'rb') as f:
-        data = f.read(readsize)
-        f.seek(-readsize, os.SEEK_END)
-        data += f.read(readsize)
+
+def get_hash(file_path):
+    read_size = 64 * 1024
+    with open(file_path, 'rb') as f:
+        data = f.read(read_size)
+        f.seek(-read_size, os.SEEK_END)
+        data += f.read(read_size)
     return hashlib.md5(data).hexdigest()
 
-videoExtensions = [".avi",".mp4",".mkv",".mpg",".mpeg",".mov",".rm",".vob",".wmv",".flv",".3gp"]
 
-def sub_downloader(fileName):
+def sub_downloader(file_path):
     # Put the code in a try catch block in order to continue for other video files, if it fails during execution
     try:
-        originalFileName = fileName
-        for videoExtension in videoExtensions:
-            fileName = fileName.replace(videoExtension,"")
-
-        # The originalFilename is same as the fileName, implies the file may not be video file at all and there is no point in wasting
-        # a http request and calculating a hash for a file which isn't of a video mimetype.
-        if originalFileName == fileName:
+        # Skip this file if it is not a video
+        root, extension = os.path.splitext(file_path)
+        if extension not in [".avi", ".mp4", ".mkv", ".mpg", ".mpeg", ".mov", ".rm", ".vob", ".wmv", ".flv", ".3gp"]:
             return
 
-        hash = get_hash(originalFileName)
-
-        if not os.path.exists(fileName + ".srt"):
-            headers = { 'User-Agent' : 'SubDB/1.0 (subtitle-downloader/1.0; http://github.com/manojmj92/subtitle-downloader)' }
-            url = "http://api.thesubdb.com/?action=download&hash=" + hash + "&language=en"
-            if pyVer == 3:
+        if not os.path.exists(root + ".srt"):
+            headers = {'User-Agent': 'SubDB/1.0 (subtitle-downloader/1.0; http://github.com/manojmj92/subtitle-downloader)'}
+            url = "http://api.thesubdb.com/?action=download&hash=" + get_hash(file_path) + "&language=en"
+            if PY_VERSION == 3:
                 req = urllib.request.Request(url, None, headers)
                 response = urllib.request.urlopen(req).read()
-            else:
+            if PY_VERSION == 2:
                 req = urllib2.Request(url, '', headers)
                 response = urllib2.urlopen(req).read()
 
             # print "Subtitle successfully Downloaded for file " + fileName
-            with open (fileName + ".srt", "wb" ) as subtitle:
+            with open(root + ".srt", "wb") as subtitle:
                 subtitle.write(response)
     except:
         #Ignore exception and continue
-        print("Error in fetching subtitle for " + fileName)
+        print("Error in fetching subtitle for " + file_path)
         print("Error", sys.exc_info())
 
 
-path = sys.argv[1]
+def main():
+    if len(sys.argv) == 1:
+        print("This program requires at least one parameter")
+        sys.exit(1)
 
-if os.path.isdir(path):
-    # Iterate the root directory recursively using os.walk and for each video file present get the subtitle
-    for root, subFolders, files in os.walk(path):
-        for file in files:
-            fname = os.path.join(root, file)
-            sub_downloader(fname)
-else:
-    sub_downloader(path)
+    for path in sys.argv:
+        if os.path.isdir(path):
+            # Iterate the root directory recursively using os.walk and for each video file present get the subtitle
+            for dir_path, _, file_names in os.walk(path):
+                for filename in file_names:
+                    file_path = os.path.join(dir_path, filename)
+                    sub_downloader(file_path)
+        else:
+            sub_downloader(path)
+
+if __name__ == '__main__':
+    main()
