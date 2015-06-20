@@ -19,7 +19,7 @@ PY_VERSION = sys.version_info[0]
 if PY_VERSION == 2:
     import urllib2
 if PY_VERSION == 3:
-    import urllib
+    import urllib.request
 
 
 def get_hash(file_path):
