@@ -14,6 +14,7 @@
 import hashlib
 import os
 import sys
+import logging
 
 PY_VERSION = sys.version_info[0]
 if PY_VERSION == 2:
@@ -49,16 +50,21 @@ def sub_downloader(file_path):
                 req = urllib2.Request(url, '', headers)
                 response = urllib2.urlopen(req).read()
 
-            # print "Subtitle successfully Downloaded for file " + fileName
             with open(root + ".srt", "wb") as subtitle:
                 subtitle.write(response)
+                logging.info("Subtitle successfully downloaded for " + file_path)
     except:
         #Ignore exception and continue
         print("Error in fetching subtitle for " + file_path)
         print("Error", sys.exc_info())
+        logging.error("Error in fetching subtitle for " + file_path + str(sys.exc_info()))
 
 
 def main():
+    root, _ = os.path.splitext(sys.argv[0])
+    logging.basicConfig(filename=root + '.log', level=logging.INFO)
+    logging.info("Started with params " + str(sys.argv))
+
     if len(sys.argv) == 1:
         print("This program requires at least one parameter")
         sys.exit(1)
