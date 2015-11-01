@@ -27,22 +27,25 @@ class TestSubDownloader(unittest.TestCase):
 
     def test_get_hash(self):
         '''Positive test for method get_hash.'''
-        random.seed(1337)
+        def float_to_str(number):
+          return "%.14f" % number
 
+        random.seed(1337)
         file_descriptor, tmp_path = tempfile.mkstemp()
         os.close(file_descriptor)
         with open(tmp_path, 'wb') as tmp_file:
             rand_data = [random.random() for _ in range(10000)]
-            plaintext = "".join(map(str, rand_data))
+            plaintext = " ".join(map(float_to_str, rand_data))
             if MAJOR_VERSION == 2:
                 tmp_file.write(plaintext)
             elif MAJOR_VERSION == 3:
                 tmp_file.write(bytes(plaintext, 'ascii'))
         hashed = subdl.get_hash(tmp_path)
         os.remove(tmp_path)
-        rand_str = "%.14f" % rand_data[0]
+        rand_str = float_to_str(rand_data[0])
         self.assertEqual("0.61775285695147", rand_str, "Random generator is not trustworthy.")
-        self.assertEqual("aa35ffc8f7c7f1f8ae687e08c40c50c8", hashed)
+        self.assertEqual("0.61775285695147 0.53326557360500 0.36584835924938", plaintext[:50], "float to str conversion likely different")
+        self.assertEqual("4f52910b28daeb6564c23f27d853377b", hashed, "Unexpected hash calculation returned")
 
     def test_is_movie_extension(self):
         '''Test the is_movie_file_extention function.'''
