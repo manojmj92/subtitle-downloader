@@ -8,13 +8,14 @@ import unittest
 
 import subtitle_downloader as subdl
 
+MAJOR_VERSION = sys.version_info[0]
 class TestSubDownloader(unittest.TestCase):
+
     '''Unit tests for subtitle_downloader methods'''
     def test_print_version(self):
         '''If we are not python 2 or 3, update travis ci and this test.'''
         print(sys.version_info)
-        major_version = sys.version_info[0]
-        self.assertTrue(major_version in [2, 3])
+        self.assertTrue(MAJOR_VERSION in [2, 3])
 
     def test_get_subtitles(self):
         '''Get known subtitles from SubDb, check the content.'''
@@ -32,7 +33,11 @@ class TestSubDownloader(unittest.TestCase):
         os.close(file_descriptor)
         with open(tmp_path, 'wb') as tmp_file:
             for _ in range(100):
-                tmp_file.write(str(random.random()) * random.randint(1, 1000))
+                plaintext = str(random.random()) * random.randint(1, 1000)
+                if MAJOR_VERSION == 2:
+                    tmp_file.write(plaintext)
+                elif MAJOR_VERSION == 3:
+                    tmp_file.write(bytes(plaintext, 'UTF-8'))
         hashed = subdl.get_hash(tmp_path)
         os.remove(tmp_path)
         self.assertEqual("fe2cbd27befbf4c08cd611df049d0267", hashed)
