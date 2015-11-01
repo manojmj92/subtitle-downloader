@@ -1,4 +1,5 @@
-#-------------------------------------------------------------------------------
+#!/usr/bin/env python
+# -------------------------------------------------------------------------------
 # Name      : subtitle downloader
 # Purpose   : One step subtitle download
 #
@@ -7,7 +8,7 @@
 # Created   :
 # Copyright : (c) www.manojmj.com
 # Licence   : GPL v3
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 
 # TODO: use another DB if subs are not found on subDB
 
@@ -23,6 +24,7 @@ if PY_VERSION == 3:
 
 
 def get_hash(file_path):
+    '''Returns the hash of a file as expected by subDB: http://thesubdb.com/api/'''
     read_size = 64 * 1024
     with open(file_path, 'rb') as f:
         data = f.read(read_size)
