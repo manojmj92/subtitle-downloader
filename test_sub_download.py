@@ -23,7 +23,7 @@ class TestSubDownloader(unittest.TestCase):
             subs = subdl.get_subtitles("76b4703d5ace081a4f5116157751e891")
         except Exception as exep:
             self.fail("Raised {} unexpectedly!".format(exep))
-        self.assertTrue("Let's go home." in subs)
+        self.assertTrue("Let's go home.".encode('ascii') in subs)
 
     def test_get_hash(self):
         '''Positive test for method get_hash.'''
@@ -37,10 +37,10 @@ class TestSubDownloader(unittest.TestCase):
             if MAJOR_VERSION == 2:
                 tmp_file.write(plaintext)
             elif MAJOR_VERSION == 3:
-                tmp_file.write(bytes(plaintext, 'UTF-8'))
+                tmp_file.write(bytes(plaintext, 'ascii'))
         hashed = subdl.get_hash(tmp_path)
         os.remove(tmp_path)
-        rand_str = "{:16.14f}".format(rand_data[0])
+        rand_str = "%.14f" % rand_data[0]
         self.assertEqual("0.61775285695147", rand_str, "Random generator is not trustworthy.")
         self.assertEqual("aa35ffc8f7c7f1f8ae687e08c40c50c8", hashed)
 
