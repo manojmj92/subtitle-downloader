@@ -45,26 +45,29 @@ def is_movie_file_extension(extension):
     return extension in [".avi", ".mp4", ".mkv", ".mpg", ".mpeg", ".mov", ".rm", ".vob", ".wmv", ".flv", ".3gp"]
 
 def sub_download(file_path):
-    # Skip this file if it is not a video
     root, extension = os.path.splitext(file_path)
+
+    # Skip this file if it is not a video
     if not is_movie_file_extension(extension):
         return
 
-    if not os.path.exists(root + ".srt"):
-        # Ignore exceptions to continue seamlessly for other video files
-        try:
-            file_hash = get_hash(file_path)
-            print file_hash
-            subs = get_subtitles(file_hash)
-        except:
-            #Ignore exception and continue
-            print("Error in fetching subtitle for " + file_path)
-            print("Error", sys.exc_info())
-            return
+    # Don't redownload subs
+    if os.path.exists(root + ".srt"):
+        return
 
-        print "Subtitle successfully Downloaded for file " + file_path
-        with open(root + ".srt", "wb") as subtitle:
-            subtitle.write(subs)
+    # Ignore exceptions to continue seamlessly for other video files
+    try:
+        file_hash = get_hash(file_path)
+        subs = get_subtitles(file_hash)
+    except:
+        #Ignore exception and continue
+        print("Error in fetching subtitle for " + file_path)
+        print("Error", sys.exc_info())
+        return
+
+    print("Subtitle successfully Downloaded for file " + file_path)
+    with open(root + ".srt", "wb") as subtitle:
+        subtitle.write(subs)
 
 def sub_download_dir(path):
     for dir_path, _, file_names in os.walk(path):
