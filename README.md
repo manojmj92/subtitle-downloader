@@ -7,20 +7,20 @@ Python script to download english subtitles of any movie/tv series episode.
 Get the latest version of Python at http://www.python.org/getit/.
 
 ### Usage:
-If you have python in your path, simply drag and drop files and folders you wish to get subtitles from on subtitle-downloader.py
+If you have python in your path, simply drag and drop files and folders you wish to get subtitles from on subtitle_downloader.py
 
 #### Windows:
 * Install Python
     Follow the steps at http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7 to set the python path.
 
-* Place subtitle-downloader.py file in C:\
+* Place subtitle_downloader.py file in C:\
 
 * Place the Subtitle.cmd in sendto folder in windows (can be accessed by typing shell:sendto in address bar)
 
 * Right click the movie file (not the movie folder). You can also select multiple files.
 and click sendto -> Subtitle.cmd
 
-* If you want to download subtitles for all movies in a folder, you can use a folder as parameter to subtitle-downloader.py.
+* If you want to download subtitles for all movies in a folder, you can use a folder as parameter to subtitle_downloader.py.
 
 #### Mac:
 * Install python and make sure it is in your path
@@ -66,7 +66,7 @@ A how to video can be found here: http://www.youtube.com/watch?v=Q5YWEqgw9X8
 
 * The path for Subtitle_downloader.py is hardcoded to Desktop ...You can change it accordingly.
 
-* Open terminal and execute following command : 
+* Open terminal and execute following command :
 ```
 chmod +x ~/.gnome2/nemo-scripts/Subtitles_In_English_for_nemo.sh
 ```

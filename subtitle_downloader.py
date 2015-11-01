@@ -73,7 +73,6 @@ def sub_download_dir(path):
             sub_download(file_path)
 
 def main():
-    print niroy
     if len(sys.argv) == 1:
         print("This program requires at least one parameter")
         sys.exit(1)

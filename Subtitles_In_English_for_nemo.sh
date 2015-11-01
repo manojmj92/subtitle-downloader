@@ -3,8 +3,8 @@ IFS="
 "
 
 for line in $NEMO_SCRIPT_SELECTED_FILE_PATHS; do
-        full_path="/home/"$USER"/Desktop/"subtitle-downloader.py
-        python $full_path $line 
+        full_path="/home/"$USER"/Desktop/"subtitle_downloader.py
+        python $full_path $line
         notify-send $line
 done
 
