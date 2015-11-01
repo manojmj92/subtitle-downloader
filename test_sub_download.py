@@ -1,6 +1,8 @@
+#!/usr/bin/env python
 '''Unit tests of subtitle_downloader'''
 import os
 import random
+import sys
 import tempfile
 import unittest
 
@@ -8,6 +10,11 @@ import subtitle_downloader as subdl
 
 class TestSubDownloader(unittest.TestCase):
     '''Unit tests for subtitle_downloader methods'''
+    def test_print_version(self):
+        '''If we are not python 2 or 3, update travis ci and this test'''
+        print(sys.version_info)
+        major_version = sys.version_info.major
+        self.assertIn(major_version, [2, 3])
 
     def test_get_subtitles(self):
         '''Positive test for method get_subtitles'''

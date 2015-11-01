@@ -11,4 +11,4 @@ python:
 # command to install dependencies
 # install: "pip install -r requirements.txt"
 # command to run tests
-script: test_sub_download.py
+script: chmod +x test_sub_download.py && ./test_sub_download.py
