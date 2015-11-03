@@ -40,14 +40,14 @@ def get_hash(file_path):
 def get_subtitles(file_hash):
     '''Return the subtitles text for the given movie file hash.'''
     headers = {'User-Agent':'SubDB/1.0 (subtitle_downloader/1.0; http://github.com/manojmj92/subtitle_downloader)'}
-    url = "http://api.thesubdb.com/?action=download&hash={}&language=en".format(file_hash)
+    url = "http://api.thesubdb.com/?action=download&hash={0}&language=en".format(file_hash)
     if PY_VERSION == 3:
         req = urllib.request.Request(url, None, headers)
         response = urllib.request.urlopen(req).read()
     if PY_VERSION == 2:
         req = urllib2.Request(url, '', headers)
         response = urllib2.urlopen(req).read()
-    return response
+    return str(response)
 
 
 def is_movie_file_extension(extension):
@@ -76,11 +76,11 @@ def sub_download(file_path):
         subs = get_subtitles(file_hash)
     except:
         # Ignore exception and continue
-        log("Error in fetching subtitle for {}".format(file_path))
+        log("Error in fetching subtitle for {0}".format(file_path))
         log("Error", sys.exc_info())
         return
 
-    log("Subtitle successfully Downloaded for {}".format(file_path))
+    log("Subtitle successfully Downloaded for {0}".format(file_path))
     subtitle_path = root + ".srt"
     with open(subtitle_path, "wb") as subtitle:
         subtitle.write(subs)
