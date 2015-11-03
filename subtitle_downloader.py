@@ -12,7 +12,7 @@
 # -------------------------------------------------------------------------------
 
 # TODO: use another DB if subs are not found on subDB
-
+from __future__ import print_function
 import hashlib
 import os
 import sys
@@ -23,6 +23,8 @@ if PY_VERSION == 2:
 if PY_VERSION == 3:
     import urllib.request
 
+def log(message):
+    print(message)
 
 def get_hash(file_path):
     '''Returns the hash of a file as expected by subDB: http://thesubdb.com/api/
@@ -56,7 +58,8 @@ def is_movie_file_extension(extension):
 
 def sub_download(file_path):
     '''Will try to download the subtitles for the given movie file path.
-    The subtitle file will be placed in the same folder as the movie file'''
+    The subtitle file will be placed in the same folder as the movie file.
+    Returns the subtitle path.'''
     root, extension = os.path.splitext(file_path)
 
     # Skip this file if it is not a video
@@ -73,13 +76,15 @@ def sub_download(file_path):
         subs = get_subtitles(file_hash)
     except:
         # Ignore exception and continue
-        print("Error in fetching subtitle for {}".format(file_path))
-        print("Error", sys.exc_info())
+        log("Error in fetching subtitle for {}".format(file_path))
+        log("Error", sys.exc_info())
         return
 
-    print("Subtitle successfully Downloaded for {}".format(file_path))
-    with open(root + ".srt", "wb") as subtitle:
+    log("Subtitle successfully Downloaded for {}".format(file_path))
+    subtitle_path = root + ".srt"
+    with open(subtitle_path, "wb") as subtitle:
         subtitle.write(subs)
+    return subtitle_path
 
 
 def sub_download_dir(path):
@@ -90,17 +95,17 @@ def sub_download_dir(path):
             sub_download(file_path)
 
 
-def main():
+def main(argv):
     '''Main entry point'''
-    if len(sys.argv) == 1:
-        print("This program requires at least one parameter")
+    if len(argv) <= 1:
+        log("This program requires at least one parameterz")
         sys.exit(1)
 
-    for path in sys.argv:
+    for path in argv:
         if os.path.isdir(path):
             sub_download_dir(path)
         else:
             sub_download(path)
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)
