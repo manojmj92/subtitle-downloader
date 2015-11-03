@@ -47,7 +47,7 @@ def get_subtitles(file_hash):
     if PY_VERSION == 2:
         req = urllib2.Request(url, '', headers)
         response = urllib2.urlopen(req).read()
-    return str(response)
+    return response
 
 
 def is_movie_file_extension(extension):

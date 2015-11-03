@@ -43,7 +43,7 @@ class TestSubDownloader(unittest.TestCase):
             subs = subdl.get_subtitles("76b4703d5ace081a4f5116157751e891")
         except Exception as exep:
             self.fail("Raised {0} unexpectedly!".format(exep))
-        self.assertTrue("Let's go home." in subs)
+        self.assertTrue("Let's go home.".encode('ascii') in subs)
 
     def test_get_hash(self):
         '''Positive test for method get_hash.'''
@@ -98,6 +98,7 @@ class TestSubDownloader(unittest.TestCase):
         with open(self.srt_path) as subs_file:
             subs = subs_file.read()
         self.assertTrue("Let's go home." in subs)
+        self.assertTrue("success" in self.logs[0])
 
     def test_main_failure(self):
         '''Make shure main fails with not enough arguments'''
