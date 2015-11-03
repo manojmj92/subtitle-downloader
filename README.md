@@ -29,6 +29,8 @@ and click sendto -> Subtitle.cmd
 
 * Add an action called "Run Shell Script"
 
+* On the top, under 'Service receives selected' drop-down, select 'files or folder' and in the next drop-down, for 'in' select 'Finder'
+
 * On the right top of the Run Shell Script action, make sure you selected "as arguments" for "Pass Input"
 
 * Copy the contents of subtitle.sh in the action
@@ -66,7 +68,7 @@ A how to video can be found here: http://www.youtube.com/watch?v=Q5YWEqgw9X8
 
 * The path for Subtitle_downloader.py is hardcoded to Desktop ...You can change it accordingly.
 
-* Open terminal and execute following command : 
+* Open terminal and execute following command :
 ```
 chmod +x ~/.gnome2/nemo-scripts/Subtitles_In_English_for_nemo.sh
 ```
@@ -74,4 +76,3 @@ chmod +x ~/.gnome2/nemo-scripts/Subtitles_In_English_for_nemo.sh
 * Now Right Click on the movie file (not the movie folder). You can also select multiple files. Click Services -> Subtitles_In_English_for_nemo.
 
 Voila. the .srt subtitle file will be created right next to your movie file.
-
