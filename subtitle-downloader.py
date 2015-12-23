@@ -37,7 +37,7 @@ def sub_downloader(file_path):
     try:
         # Skip this file if it is not a video
         root, extension = os.path.splitext(file_path)
-        if extension not in [".avi", ".mp4", ".mkv", ".mpg", ".mpeg", ".mov", ".rm", ".vob", ".wmv", ".flv", ".3gp"]:
+        if extension not in [".avi", ".mp4", ".mkv", ".mpg", ".mpeg", ".mov", ".rm", ".vob", ".wmv", ".flv", ".3gp",".3g2"]:
             return
 
         if not os.path.exists(root + ".srt"):
