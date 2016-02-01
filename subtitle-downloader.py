@@ -15,7 +15,8 @@ import hashlib
 import os
 import sys
 import logging
-
+import requests,time,re,zipfile
+from bs4 import BeautifulSoup
 PY_VERSION = sys.version_info[0]
 if PY_VERSION == 2:
     import urllib2
@@ -54,10 +55,50 @@ def sub_downloader(file_path):
                 subtitle.write(response)
                 logging.info("Subtitle successfully downloaded for " + file_path)
     except:
-        #Ignore exception and continue
-        print("Error in fetching subtitle for " + file_path)
-        print("Error", sys.exc_info())
-        logging.error("Error in fetching subtitle for " + file_path + str(sys.exc_info()))
+        #download subs from subscene if not found in subdb  
+        sub_downloader2(file_path)
+def sub_downloader2(file_path):
+	try:
+		root, extension = os.path.splitext(file_path)
+		if extension not in [".avi", ".mp4", ".mkv", ".mpg", ".mpeg", ".mov", ".rm", ".vob", ".wmv", ".flv", ".3gp",".3g2"]:
+			return	
+		if os.path.exists(root + ".srt"):
+			return
+		j=-1
+		root2=root
+		for i in range(0,len(root)):
+			if(root[i]=="\\"):
+				j=i
+		root=root2[j+1:]
+		root2=root2[:j+1]
+		r=requests.get("http://subscene.com/subtitles/release?q="+root);
+		soup=BeautifulSoup(r.content,"lxml")
+		atags=soup.find_all("a")
+		href=""
+		for i in range(0,len(atags)):
+			spans=atags[i].find_all("span")
+			if(len(spans)==2 and spans[0].get_text().strip()=="English"):
+				href=atags[i].get("href").strip()				
+		if(len(href)>0):
+			r=requests.get("http://subscene.com"+href);
+			soup=BeautifulSoup(r.content,"lxml")
+			lin=soup.find_all('a',attrs={'id':'downloadButton'})[0].get("href")
+			r=requests.get("http://subscene.com"+lin);
+			soup=BeautifulSoup(r.content,"lxml")
+			subfile=open(root2+".zip", 'wb')
+			for chunk in r.iter_content(100000):
+				subfile.write(chunk)
+				subfile.close()
+				time.sleep(1)
+				zip=zipfile.ZipFile(root2+".zip")
+				zip.extractall(root2)
+				zip.close()
+				os.unlink(root2+".zip")		
+	except:
+		#Ignore exception and continue
+		print("Error in fetching subtitle for " + file_path)
+		print("Error", sys.exc_info())
+		logging.error("Error in fetching subtitle for " + file_path + str(sys.exc_info()))
 
 
 def main():
