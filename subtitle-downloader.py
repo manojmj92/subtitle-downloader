@@ -10,7 +10,7 @@
 #-------------------------------------------------------------------------------
 
 # TODO: use another DB if subs are not found on subDB
-
+#!/usr/bin/env
 import hashlib
 import os
 import sys
