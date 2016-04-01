@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #-------------------------------------------------------------------------------
 # Name      : subtitle downloader
 # Purpose   : One step subtitle download
@@ -10,7 +11,6 @@
 #-------------------------------------------------------------------------------
 
 # TODO: use another DB if subs are not found on subDB
-#!/usr/bin/env
 import hashlib
 import os
 import sys
