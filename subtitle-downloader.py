@@ -93,7 +93,8 @@ def sub_downloader2(file_path):
                 zip=zipfile.ZipFile(root2+".zip")
                 zip.extractall(root2)
                 zip.close()
-                os.unlink(root2+".zip")     
+                os.unlink(root2+".zip")
+                os.rename(root2+zip.namelist()[0], os.path.join(root2, root + ".srt"))
     except:
         #Ignore exception and continue
         print("Error in fetching subtitle for " + file_path)
