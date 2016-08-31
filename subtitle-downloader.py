@@ -67,8 +67,9 @@ def sub_downloader2(file_path):
         j=-1
         root2=root
         for i in range(0,len(root)):
-            if(root[i]=="\\"):
+            if(root[i]=="\\" or root[i] =="/"):
                 j=i
+                break
         root=root2[j+1:]
         root2=root2[:j+1]
         r=requests.get("http://subscene.com/subtitles/release?q="+root);
