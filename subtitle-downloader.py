@@ -13,6 +13,7 @@
 # TODO: use another DB if subs are not found on subDB
 import hashlib
 import os
+import shutil 
 import sys
 import logging
 import requests,time,re,zipfile
@@ -95,7 +96,7 @@ def sub_downloader2(file_path):
                 zip.extractall(root2)
                 zip.close()
                 os.unlink(root2+".zip")
-                os.rename(root2+zip.namelist()[0], os.path.join(root2, root + ".srt"))
+                shutil.move(root2+zip.namelist()[0], os.path.join(root2, root + ".srt"))
     except:
         #Ignore exception and continue
         print("Error in fetching subtitle for " + file_path)
