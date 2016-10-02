@@ -45,7 +45,7 @@ and click sendto -> Subtitle.cmd
 #####Linux with Nautilus file manager(Tested on Debian Based with nautilus as file manager):
 * Install python
 
-* Go to ~/.gnome2/nautilus-scripts folder and add Subtitles_in_english.sh in the folder.
+* Go to ~/.local/share/nautilus/scripts/ (Ubuntu 13.04 or above) OR ~/.gnome2/nautilus-scripts/ (Ubuntu 12.10 and below) folder and add Subtitles_in_english.sh in the folder.
 
 * The path for Subtitle_downloader.py is hardcoded to Desktop ...U can change it accordingly.
 
