@@ -8,6 +8,9 @@
 # Created   :
 # Copyright : (c) www.manojmj.com
 # Licence   : GPL v3
+#
+#
+#Edited for my using: Mohamed Hamza.
 #-------------------------------------------------------------------------------
 
 # TODO: use another DB if subs are not found on subDB
@@ -55,11 +58,11 @@ def sub_downloader(file_path):
             with open(root + "en.srt", "wb") as subtitle:
                 subtitle.write(response)
                 logging.info("Subtitle successfully downloaded for " + file_path)
-        sub_downloader2(file_path)
+        
     except:
         #download subs from subscene if not found in subdb  
-        sub_downloader2(file_path)
-def sub_downloader2(file_path):
+        sub_downloader2(file_path, 'English')
+def sub_downloader2(file_path, language):
     try:
         root, extension = os.path.splitext(file_path)
         if extension not in [".avi", ".mp4", ".mkv", ".mpg", ".mpeg", ".mov", ".rm", ".vob", ".wmv", ".flv", ".3gp",".3g2"]:
@@ -79,7 +82,7 @@ def sub_downloader2(file_path):
         href=""
         for i in range(0,len(atags)):
             spans=atags[i].find_all("span")
-            if(len(spans)==2 and spans[0].get_text().strip()=="Arabic" and spans[1].get_text().strip()==root):
+            if(len(spans)==2 and spans[0].get_text().strip()==language and spans[1].get_text().strip()==root):
                 href=atags[i].get("href").strip()
         print(href)                      
         if(len(href)>0):
@@ -89,16 +92,16 @@ def sub_downloader2(file_path):
             print('this lint', lin)
             r=requests.get("http://subscene.com"+lin);
             soup=BeautifulSoup(r.content,"lxml")
-            subfile=open(root2+".zip", 'wb')
+            subfile=open(root2+" {}.zip".format(language), 'wb')
             for chunk in r.iter_content(100000):
                 subfile.write(chunk)
                 subfile.close()
                 time.sleep(1)
-                zip=zipfile.ZipFile(root2+".zip")
+                zip=zipfile.ZipFile(root2+" {}.zip".format(language))
                 zip.extractall(root2)
                 zip.close()
-                os.unlink(root2+".zip")
-                shutil.move(root2+zip.namelist()[0], os.path.join(root2, root + ".srt"))
+                os.unlink(root2+" {}.zip".format(language))
+                shutil.move(root2+zip.namelist()[0], os.path.join(root2, root + " {}.srt".format(language)))
     except:
         #Ignore exception and continue
         print("Error in fetching subtitle for " + file_path)
@@ -122,8 +125,10 @@ def main():
                 for filename in file_names:
                     file_path = os.path.join(dir_path, filename)
                     sub_downloader(file_path)
+                    sub_downloader2(file_path, 'Arabic')
         else:
             sub_downloader(path)
+            sub_downloader2(path, 'Arabic')
 
 if __name__ == '__main__':
     main()
