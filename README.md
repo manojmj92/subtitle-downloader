@@ -52,7 +52,7 @@ and click sendto -> Subtitle.cmd
 * Now Right Click on the movie file (not the movie folder). You can also select multiple files. Click Services -> Subtitles_in_english.
 
 
-![ScreenShot](https://cloud.githubusercontent.com/assets/1637697/3078931/1a693b9a-e487-11e3-8d51-64dce970ad9d.gif)
+![gif](https://cloud.githubusercontent.com/assets/12420351/24872579/2dd8f016-1e1e-11e7-89cd-d418688da0d1.gif)
 
 Voila. the .srt subtitle file will be created right next to your movie file.
 
