@@ -42,7 +42,7 @@ def sub_downloader(file_path):
         if extension not in [".avi", ".mp4", ".mkv", ".mpg", ".mpeg", ".mov", ".rm", ".vob", ".wmv", ".flv", ".3gp",".3g2"]:
             return
 
-        if not os.path.exists(root + ".srt"):
+        if not os.path.exists(root + "en.srt"):
             headers = {'User-Agent': 'SubDB/1.0 (subtitle-downloader/1.0; http://github.com/manojmj92/subtitle-downloader)'}
             url = "http://api.thesubdb.com/?action=download&hash=" + get_hash(file_path) + "&language=en"
             if PY_VERSION == 3:
@@ -52,9 +52,10 @@ def sub_downloader(file_path):
                 req = urllib2.Request(url, '', headers)
                 response = urllib2.urlopen(req).read()
 
-            with open(root + ".srt", "wb") as subtitle:
+            with open(root + "en.srt", "wb") as subtitle:
                 subtitle.write(response)
                 logging.info("Subtitle successfully downloaded for " + file_path)
+        sub_downloader2(file_path)
     except:
         #download subs from subscene if not found in subdb  
         sub_downloader2(file_path)
@@ -63,13 +64,12 @@ def sub_downloader2(file_path):
         root, extension = os.path.splitext(file_path)
         if extension not in [".avi", ".mp4", ".mkv", ".mpg", ".mpeg", ".mov", ".rm", ".vob", ".wmv", ".flv", ".3gp",".3g2"]:
             return  
-        if os.path.exists(root + ".srt"):
-            return
+
         j=-1
         root2=root
-        for i in range(0,len(root)):
-            if(root[i]=="\\" or root[i] =="/"):
-                j=i
+        for idx, char in enumerate(reversed(root)):
+            if(char == "\\" or char =="/"):
+                j = len(root)-1 - idx
                 break
         root=root2[j+1:]
         root2=root2[:j+1]
@@ -79,12 +79,14 @@ def sub_downloader2(file_path):
         href=""
         for i in range(0,len(atags)):
             spans=atags[i].find_all("span")
-            if(len(spans)==2 and spans[0].get_text().strip()=="English"):
-                href=atags[i].get("href").strip()               
+            if(len(spans)==2 and spans[0].get_text().strip()=="Arabic" and spans[1].get_text().strip()==root):
+                href=atags[i].get("href").strip()
+        print(href)                      
         if(len(href)>0):
             r=requests.get("http://subscene.com"+href);
             soup=BeautifulSoup(r.content,"lxml")
             lin=soup.find_all('a',attrs={'id':'downloadButton'})[0].get("href")
+            print('this lint', lin)
             r=requests.get("http://subscene.com"+lin);
             soup=BeautifulSoup(r.content,"lxml")
             subfile=open(root2+".zip", 'wb')
@@ -109,9 +111,9 @@ def main():
     logging.basicConfig(filename=root + '.log', level=logging.INFO)
     logging.info("Started with params " + str(sys.argv))
 
-    if len(sys.argv) == 1:
-        print("This program requires at least one parameter")
-        sys.exit(1)
+    # if len(sys.argv) == 1:
+    #     print("This program requires at least one parameter")
+    #     sys.exit(1)
 
     for path in sys.argv:
         if os.path.isdir(path):
