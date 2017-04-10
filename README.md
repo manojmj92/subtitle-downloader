@@ -1,7 +1,7 @@
 Subtitle Downloader
 ===================
 
-Python script to download english subtitles of any movie/tv series episode.
+Python script to download english & Arabic subtitles of any movie/tv series episode.
 
 
 Get the latest version of Python at http://www.python.org/getit/.
