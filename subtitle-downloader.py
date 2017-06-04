@@ -67,9 +67,9 @@ def sub_downloader2(file_path):
             return
         j=-1
         root2=root
-        for i in range(0,len(root)):
-            if(root[i]=="\\" or root[i] =="/"):
-                j=i
+        for idx, char in enumerate(reversed(root)):
+            if(char == "\\" or char =="/"):
+                j = len(root)-1 - idx
                 break
         root=root2[j+1:]
         root2=root2[:j+1]
