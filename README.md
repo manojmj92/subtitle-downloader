@@ -42,7 +42,7 @@ and click sendto -> Subtitle.cmd
 * Now, Right click the movie file (not the movie folder). You can also select multiple files. Click Services -> Download Subtitle
 
 
-#####Linux with Nautilus file manager(Tested on Debian Based with nautilus as file manager):
+##### Linux with Nautilus file manager(Tested on Debian Based with nautilus as file manager):
 * Install python
 
 * Go to ~/.local/share/nautilus/scripts/ (Ubuntu 13.04 or above) OR ~/.gnome2/nautilus-scripts/ (Ubuntu 12.10 and below) folder and add Subtitles_in_english.sh in the folder.
@@ -61,7 +61,7 @@ Enjoy the show!
 More details can be found here : qr.ae/GxOcx
 A how to video can be found here: http://www.youtube.com/watch?v=Q5YWEqgw9X8
 
-#####Linux with NEMO file manager(Tested on Debian Based with NEMO as file manager):
+##### Linux with NEMO file manager(Tested on Debian Based with NEMO as file manager):
 * Install python
 
 * Go to ~/.gnome2/nemo-scripts folder and add Subtitles_In_English_for_nemo.sh in the folder.
