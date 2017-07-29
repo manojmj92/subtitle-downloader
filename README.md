@@ -35,7 +35,7 @@ and click sendto -> Subtitle.cmd
 
 * Copy the contents of subtitle.sh in the action
 
-* Edit the path to "Subtitle_downloader.py" to wherever you have downloaded
+* Edit the path to "subtitle-downloader.py" to wherever you have downloaded
 
 * Press `Command + S` to save it and give some name like "Download Subtitle"
 
@@ -47,7 +47,7 @@ and click sendto -> Subtitle.cmd
 
 * Go to ~/.local/share/nautilus/scripts/ (Ubuntu 13.04 or above) OR ~/.gnome2/nautilus-scripts/ (Ubuntu 12.10 and below) folder and add Subtitles_in_english.sh in the folder.
 
-* The path for Subtitle_downloader.py is hardcoded to Desktop ...U can change it accordingly.
+* The path for subtitle-downloader.py is hardcoded to Desktop ...U can change it accordingly.
 
 * Now Right Click on the movie file (not the movie folder). You can also select multiple files. Click Services -> Subtitles_in_english.
 
@@ -66,7 +66,7 @@ A how to video can be found here: http://www.youtube.com/watch?v=Q5YWEqgw9X8
 
 * Go to ~/.gnome2/nemo-scripts folder and add Subtitles_In_English_for_nemo.sh in the folder.
 
-* The path for Subtitle_downloader.py is hardcoded to Desktop ...You can change it accordingly.
+* The path for subtitle-downloader.py is hardcoded to Desktop ...You can change it accordingly.
 
 * Open terminal and execute following command :
 ```
