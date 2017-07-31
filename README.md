@@ -58,7 +58,7 @@ Voila. the .srt subtitle file will be created right next to your movie file.
 
 Enjoy the show!
 
-More details can be found here : qr.ae/GxOcx
+More details can be found here : http://qr.ae/GxOcx
 A how to video can be found here: http://www.youtube.com/watch?v=Q5YWEqgw9X8
 
 ##### Linux with NEMO file manager(Tested on Debian Based with NEMO as file manager):
