@@ -65,14 +65,8 @@ def sub_downloader2(file_path):
             return  
         if os.path.exists(root + ".srt"):
             return
-        j=-1
-        root2=root
-        for idx, char in enumerate(reversed(root)):
-            if(char == "\\" or char =="/"):
-                j = len(root)-1 - idx
-                break
-        root=root2[j+1:]
-        root2=root2[:j+1]
+        root2,root = os.path.split(root) # Split the pathname into (head, tail) where tail is the last pathname component and head is everything leading up to that.
+        root2 += os.sep # Add character used by the operating system to separate pathname components. '/' for POSIX and '\\' for Windows.
         r=requests.get("http://subscene.com/subtitles/release?q="+root);
         soup=BeautifulSoup(r.content,"lxml")
         atags=soup.find_all("a")
