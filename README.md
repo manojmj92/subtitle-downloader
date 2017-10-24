@@ -76,3 +76,13 @@ chmod +x ~/.gnome2/nemo-scripts/Subtitles_In_English_for_nemo.sh
 * Now Right Click on the movie file (not the movie folder). You can also select multiple files. Click Services -> Subtitles_In_English_for_nemo.
 
 Voila. the .srt subtitle file will be created right next to your movie file.
+
+###Development
+
+We would love if you can contribute to make this project better. Here's how you can do it:
+
+1. Fork the project.
+2. Commit changes or bugfixes to your repo.
+3. Submit a pull request
+4. Sit back and relax while our maintainers checkout your changes and approve them!
+
