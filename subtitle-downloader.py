@@ -96,7 +96,7 @@ def sub_downloader2(file_path):
                 zip_.extractall(root2)             #Naming it as zip would overwrite built-in function zip
                 zip_.close()
                 os.unlink(root2+".zip")
-                shutil.move(root2+zip.namelist()[0], os.path.join(root2, root + ".srt"))
+                shutil.move(root2+zip_.namelist()[0], os.path.join(root2, root + ".srt"))
     except:
         #Ignore exception and continue
         print("Error in fetching subtitle for " + file_path)
