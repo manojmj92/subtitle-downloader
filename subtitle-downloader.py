@@ -97,10 +97,10 @@ def sub_downloader2(file_path, language):
                 subfile.write(chunk)
                 subfile.close()
                 time.sleep(1)
-                zip=zipfile.ZipFile(root2+" {}.zip".format(language))
-                zip.extractall(root2)
-                zip.close()
-                os.unlink(root2+" {}.zip".format(language))
+                zip_=zipfile.ZipFile(root2+" {}.zip".format(language)) #Naming zip is not recommended renamed it to zip_ (Following PEP 8 convention)
+                zip_.extractall(root2)                                 #Naming it as zip would overwrite built-in function zip
+                zip_.close()
+                os_.unlink(root2+" {}.zip".format(language))
                 shutil.move(root2+zip.namelist()[0], os.path.join(root2, root + " {}.srt".format(language)))
     except:
         #Ignore exception and continue
