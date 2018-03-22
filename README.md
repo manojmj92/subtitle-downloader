@@ -1,7 +1,7 @@
 Subtitle Downloader
 ===================
 
-Python script to download english subtitles of any movie/tv series episode.
+Python script to download english & Arabic subtitles of any movie/tv series episode.
 
 
 Get the latest version of Python at http://www.python.org/getit/.
@@ -41,6 +41,7 @@ and click sendto -> Subtitle.cmd
 
 * Now, Right click the movie file (not the movie folder). You can also select multiple files. Click Services -> Download Subtitle
 
+![gif](https://cloud.githubusercontent.com/assets/12420351/24872579/2dd8f016-1e1e-11e7-89cd-d418688da0d1.gif)
 
 ##### Linux with Nautilus file manager(Tested on Debian Based with nautilus as file manager):
 * Install python
