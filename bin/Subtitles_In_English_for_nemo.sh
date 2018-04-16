@@ -2,8 +2,8 @@ IFS_BAK=$IFS
 IFS="
 "
 
-for line in $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS; do
-        full_path="/home/"$USER"/Desktop/"subtitle-downloader.py
+for line in $NEMO_SCRIPT_SELECTED_FILE_PATHS; do
+        full_path="/home/"$USER"/Desktop/subtitle-downloader/"subtitle_downloader.py
         python $full_path $line 
         notify-send $line
 done
