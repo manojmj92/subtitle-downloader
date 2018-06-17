@@ -210,10 +210,8 @@ def main(download_all, iso, language, list_languages, verbose, input_path):
         print(json.dumps(LANGUAGE_CODES, indent=4))
         sys.exit(0)
 
-    # glob.glob doesn't like square brackets in the file path
-    if '[' in input_path or ']' in input_path:
-        click.echo("Error: file path must not contain square brackets.")
-        sys.exit(0)
+    # Put square brackets into character class so they work with glob
+    glob_path = input_path.replace('[', '[[]').replace(']', '[]]')
 
     # root, _ = os.path.splitext(input_path)
     # logging.basicConfig(filename=root + '.log', level=logging.INFO)
@@ -259,7 +257,7 @@ def main(download_all, iso, language, list_languages, verbose, input_path):
         if os.path.isdir(input_path):
             files = []
             for extension in VIDEO_EXTENSIONS:
-                for file in glob.glob(input_path + "*" + extension):
+                for file in glob.glob(glob_path + "*" + extension):
                     files.append(file)
             for file in files:
                 get_from_subdb(file, lang, verbose=verbose)
