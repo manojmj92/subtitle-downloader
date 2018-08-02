@@ -13,6 +13,11 @@ If you have python in your path, simply drag and drop files and folders you wish
 * Install Python
     Follow the steps at http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7 to set the python path.
 
+* install click, requests, bs4 libraries 
+    ```
+        pip install click requests bs4
+    ```
+
 * Place subtitle-downloader.py file in C:\
 
 * Place the Subtitle.cmd in sendto folder in windows (can be accessed by typing shell:sendto in address bar)
@@ -24,6 +29,10 @@ and click sendto -> Subtitle.cmd
 
 #### Mac:
 * Install python and make sure it is in your path
+* install click, requests, bs4 libraries 
+    ```
+        pip install click requests bs4
+    ```
 
 * Open Automator and create a new document of type "Service"
 
@@ -45,6 +54,10 @@ and click sendto -> Subtitle.cmd
 
 ##### Linux with Nautilus file manager(Tested on Debian Based with nautilus as file manager):
 * Install python
+* install click, requests, bs4 libraries 
+    ```
+        pip install click requests bs4
+    ``` 
 
 * Go to ~/.local/share/nautilus/scripts/ (Ubuntu 13.04 or above) OR ~/.gnome2/nautilus-scripts/ (Ubuntu 12.10 and below) folder and add Subtitles_in_english.sh in the folder.
 
