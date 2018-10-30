@@ -17,7 +17,7 @@ setup(
         "click==6.7",
         "idna==2.5",
         "lxml==3.8.0",
-        "requests==2.17.3",
+        "requests==2.20.0",
         "sh==1.12.14",
         "urllib3==1.21.1"
     ]
