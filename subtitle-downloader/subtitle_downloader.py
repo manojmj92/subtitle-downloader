@@ -173,7 +173,7 @@ def get_from_subscene(file_path, language):
 
 
 @click.command(context_settings=dict(max_content_width=80))
-@click.option("download_all", "--all", "-a", is_flag=True, 
+@click.option("download_all", "--all", "-a", is_flag=True,
               help="""Download subtitles in all available languages (nullifies '-i' or '-l')
 
               If subtitles cannot be found in a particular language, the download for that language will fail silently unless the verbose option is specified.
@@ -219,7 +219,7 @@ def main(download_all, iso, language, list_languages, verbose, input_path):
 
     languages = []
     if download_all:
-        langauges = LANGUAGE_CODES.keys()
+        languages = LANGUAGE_CODES.keys()
     else:
         if iso not in LANGUAGE_CODES.values():
             click.echo("Error: language code '" + iso + "' is unsupported.\n\nFor"
