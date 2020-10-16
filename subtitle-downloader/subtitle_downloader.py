@@ -68,14 +68,15 @@ LANGUAGE_CODES = {
     "Vietnamese": "vi",
     "Welsh": "cy",
     "Yiddish": "yi",
-    "Zulu": "zu"
+    "Zulu": "zu",
+    "Indonesian": "id"
 }
 
 # List of video file extensions this program supports
 VIDEO_EXTENSIONS = [
     ".avi", ".mp4", ".mkv", ".mpg",
     ".mpeg", ".mov", ".rm", ".vob",
-    ".wmv", ".flv", ".3gp",".3g2"
+    ".wmv", ".flv", ".3gp",".3g2", ".swf", ".mswmm"
 ]
 
 
@@ -211,7 +212,7 @@ def main(download_all, iso, language, list_languages, verbose, input_path):
         sys.exit(0)
 
     # Put square brackets into character class so they work with glob
-    glob_path = input_path.replace('[', '[[]').replace(']', '[]]')
+    glob_path = re.sub("([\[\]])", "[\g<1>]", input_path)
 
     # root, _ = os.path.splitext(input_path)
     # logging.basicConfig(filename=root + '.log', level=logging.INFO)
