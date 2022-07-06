@@ -16,7 +16,7 @@ setup(
         "chardet==3.0.3",
         "click==6.7",
         "idna==2.5",
-        "lxml==3.8.0",
+        "lxml==4.9.1",
         "requests==2.20.0",
         "sh==1.12.14",
         "urllib3==1.21.1"
