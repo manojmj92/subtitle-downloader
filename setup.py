@@ -12,7 +12,7 @@ setup(
     install_requires=[
         "beautifulsoup4==4.6.0",
         "bs4==0.0.1",
-        "certifi==2017.4.17",
+        "certifi==2022.12.7",
         "chardet==3.0.3",
         "click==6.7",
         "idna==2.5",
